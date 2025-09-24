@@ -2,7 +2,6 @@
 https://techdocs.akamai.com/terraform/docs/breaking-changes
 
 data "akamai_iam_contact_types" "my_contact_types" {}
-
 #https://techdocs.akamai.com/terraform/docs/iam-ds-groups
 data "akamai_iam_groups" "my_groups" {}
 
@@ -10,13 +9,23 @@ data "akamai_iam_group" "my_group" {
   group_id = data.akamai_iam_groups.my_groups.groups.*.group_id[0]
 }
 
+https://techdocs.akamai.com/terraform/docs/common-identifiers
+// Akamai Groups
+// Get all
+#data "akamai_groups" "my_groups" {
+#}
+
+// Akamai Contracts
 // Get all
 #data "akamai_contracts" "my_contracts" {
 #}
-
 // Get one
 #data "akamai_contract" "my_contract" {
 #  group_name = "Test BSS Knowledge"
+#}
+
+// Get all
+#data "akamai_groups" "my_groups" {
 #}
 
 // Akamai Properties
@@ -27,10 +36,6 @@ data "akamai_iam_group" "my_group" {
 */
 
 // akamai_group, referencing a single group.
-// Get all
-#data "akamai_groups" "my_groups" {
-#}
-// Get one
 data "akamai_group" "my_group" {
   group_name  = "Test BSS Knowledge"
   contract_id = "ctr_1-3CV382"
