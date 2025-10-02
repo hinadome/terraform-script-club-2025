@@ -47,13 +47,13 @@ output "my_appsec_configuration" {
 }
 
 output "my_security_configuration" {
-  value = akamai_appsec_configuration.my_security_configuration
+  value = akamai_appsec_configuration.my_terraform_appsec_config
 }
 
 output "my_security_policy_1" {
-  value = akamai_appsec_security_policy.my_security_policy_1
+  value = akamai_appsec_security_policy.my_terraform_sec_policy_1
 }
 
 output "my_security_policy_2" {
-  value = akamai_appsec_security_policy.my_security_policy_2
+  value = akamai_appsec_security_policy.my_terraform_sec_policy_2
 }

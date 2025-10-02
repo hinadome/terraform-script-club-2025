@@ -1,5 +1,5 @@
 #https://techdocs.akamai.com/terraform/docs/as-rc-configuration
-resource "akamai_appsec_configuration" "my_security_configuration" {
+resource "akamai_appsec_configuration" "my_terraform_appsec_config" {
   name        = "HI_TerraformCohortAPSConfig"
   description = "This is new configuration for TerraformCohort"
   contract_id = replace(data.akamai_group.my_group.contract_id, "ctr_", "")
@@ -11,17 +11,16 @@ resource "akamai_appsec_configuration" "my_security_configuration" {
 }
 
 #https://techdocs.akamai.com/terraform/docs/as-rc-security-policy
-resource "akamai_appsec_security_policy" "my_security_policy_1" {
-  config_id              = akamai_appsec_configuration.my_security_configuration.id
+resource "akamai_appsec_security_policy" "my_terraform_sec_policy_1" {
+  config_id              = akamai_appsec_configuration.my_terraform_appsec_config.id
   default_settings       = true
   security_policy_name   = "Terraformcohortpolicy_1"
   security_policy_prefix = "ter1"
 }
 
-resource "akamai_appsec_security_policy" "my_security_policy_2" {
-  config_id              = akamai_appsec_configuration.my_security_configuration.id
+resource "akamai_appsec_security_policy" "my_terraform_sec_policy_2" {
+  config_id              = akamai_appsec_configuration.my_terraform_appsec_config.id
   default_settings       = true
   security_policy_name   = "Terraformcohortpolicy_2"
   security_policy_prefix = "ter2"
 }
-
