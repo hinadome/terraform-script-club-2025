@@ -1,3 +1,40 @@
+locals {
+  rule_format = "v2018-09-12"
+}
+
+# get property_rules using akamai terraform
+# docker run --rm -it --name akamai -v $HOME/.edgerc:/root/.edgerc -v $HOME/code/docker_akamai_cli:/workdir akamai/shell
+# akamai --section terraformclub --accountkey 1-6JHGX:1-8BYUX terraform export-property export-property --version 1 "hi_terraform_cohort"
+# https://registry.terraform.io/providers/akamai/akamai/1.7.0/docs/data-sources/property_rules_template
+data "akamai_property_rules_template" "property_rules" {
+  template_file = abspath("${path.module}/property-snippets/main.json")
+  variables {
+    name  = "rule_format"
+    value = local.rule_format
+    type  = "string"
+  }
+  variables {
+    name  = "origin_hostname"
+    value = "origin_linode.dnslab.webtechnologists.net"
+    type  = "string"
+  }
+  variables {
+    name  = "sureroute_test_object"
+    value = "/testobject.html"
+    type  = "string"
+  }
+  variables {
+    name  = "cpcode"
+    value = akamai_cp_code.my_cp_code.id
+    type  = "number"
+  }
+  variables {
+    name  = "cpcode_name"
+    value = akamai_cp_code.my_cp_code.name
+    type  = "string"
+  }
+}
+
 #https://techdocs.akamai.com/terraform/docs/pm-rc-cp-code
 resource "akamai_cp_code" "my_cp_code" {
   name        = "HI-TerraformCohort"
@@ -18,6 +55,8 @@ resource "akamai_property" "my_terraform_property" {
     #cname_to  = akamai_edge_hostname.my_edge_hostname.edge_hostname
     cert_provisioning_type = "CPS_MANAGED"
   }
+  rules       = data.akamai_property_rules_template.property_rules.json
+  rule_format = local.rule_format
 }
 
 #https://techdocs.akamai.com/terraform/docs/pm-rc-edge-hostname

@@ -22,6 +22,10 @@ output "my_security_policy_2" {
   value = akamai_appsec_security_policy.my_terraform_sec_policy_2
 }
 
+#output "my_property_rules" {
+#  value = data.akamai_property_rules.my_property_rules
+#}
+
 #output "my_groups" {
 #  value = data.akamai_groups.my_groups
 #}

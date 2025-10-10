@@ -1,7 +1,3 @@
-data "akamai_property_products" "my_products" {
-  contract_id = var.my_contract
-}
-
 #https://techdocs.akamai.com/terraform/docs/as-ds-configuration
 data "akamai_appsec_configuration" "my_appsec_configuration" {
   name = "HI_TerraformCohortAPSConfig"
@@ -39,4 +35,11 @@ data "akamai_property_hostnames" "my_property_hostnames" {
 #data "akamai_properties" "my_properties" {
 #  contract_id = data.akamai_group.my_group.contract_id
 #  group_id    = data.akamai_group.my_group.id
+#}
+
+#data "akamai_property_rules" "my_property_rules" {
+#    property_id = akamai_property.my_terraform_property.id 
+#    version     = 1 
+#    group_id    = akamai_property.my_terraform_property.group_id
+#    contract_id = akamai_property.my_terraform_property.contract_id
 #}
