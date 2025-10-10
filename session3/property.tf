@@ -9,11 +9,6 @@ locals {
 data "akamai_property_rules_template" "property_rules" {
   template_file = abspath("${path.module}/property-snippets/main.json")
   variables {
-    name  = "rule_format"
-    value = local.rule_format
-    type  = "string"
-  }
-  variables {
     name  = "origin_hostname"
     value = "origin_linode.dnslab.webtechnologists.net"
     type  = "string"

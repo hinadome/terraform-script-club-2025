@@ -1,10 +1,4 @@
 {
-  "accountId": "act_1-6JHGX",
-  "contractId": "ctr_1-1NC95D",
-  "groupId": "grp_19293",
-  "propertyId": "prp_1268835",
-  "propertyVersion": 1,
-  "ruleFormat": "${env.rule_format}",
   "rules": {
     "name": "default",
     "behaviors": [
