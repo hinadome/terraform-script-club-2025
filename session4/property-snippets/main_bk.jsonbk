@@ -1,0 +1,58 @@
+{
+  "accountId": "act_1-6JHGX",
+  "contractId": "ctr_1-1NC95D",
+  "groupId": "grp_19293",
+  "propertyId": "prp_1268835",
+  "propertyVersion": 1,
+  "etag": "34160d2e42dcbe246d342dbd8ed8c77a679c2f98",
+  "ruleFormat": "${env.rule_format}",
+  "rules": {
+    "name": "default",
+    "behaviors": [
+      {
+        "name": "origin",
+        "options": {
+          "cacheKeyHostname": "ORIGIN_HOSTNAME",
+          "compress": true,
+          "enableTrueClientIp": false,
+          "forwardHostHeader": "REQUEST_HOST_HEADER",
+          "hostname": "${env.origin_hostname}",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "originSni": true,
+          "originType": "CUSTOMER",
+          "useUniqueCacheKey": false,
+          "verificationMode": "PLATFORM_SETTINGS"
+        }
+      },
+      {
+        "name": "cpCode",
+        "options": {
+          "value": {
+            "id": "${env.cpcode}",
+            "name": "${env.cpcode_name}"
+          }
+        }
+      },
+      {
+        "name": "allowPost",
+        "options": {
+          "allowWithoutContentLength": false,
+          "enabled": true
+        }
+      },
+      {
+        "name": "realUserMonitoring",
+        "options": {
+          "enabled": true
+        }
+      }
+    ],
+    "children": [
+      "#include:Performance.json",
+      "#include:Offload.json"
+    ],
+    "comments": "The behaviors in the Default Rule apply to all requests for the property hostname(s) unless another rule overrides the Default Rule settings.",
+    "options": {}
+  }
+}
