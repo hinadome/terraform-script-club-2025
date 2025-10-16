@@ -27,7 +27,7 @@ variable "apps" {
 variable "dns_records" {
   description = "Excercise for each"
   default = {
-    "orgigin1" = {
+    "origin1" = {
       zone       = "dnslab.webtechnologists.net"
       recordType = "A"
       ttl        = 60

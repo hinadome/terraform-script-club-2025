@@ -1,9 +1,9 @@
-locals {
-  dns_zone = "dnslab.webtechnologists.net"
-}
-
+#moved {
+#  from = akamai_dns_record.my_cname_records
+#  to   = akamai_dns_record.my_terraform_cname_records
+#}
 #https://techdocs.akamai.com/terraform/docs/dns-record
-resource "akamai_dns_record" "my_cname_records" {
+resource "akamai_dns_record" "my_terraform_cname_records" {
   count      = length(local.app_hostnames)
   zone       = local.dns_zone
   recordtype = "CNAME"

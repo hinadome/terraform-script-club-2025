@@ -1,3 +1,8 @@
+#Excecise
+locals {
+  app_hostnames = [for app in var.apps : "${app}.terraform.dnslab.webtechnologists.net"]
+}
+
 #https://techdocs.akamai.com/terraform/docs/as-ds-configuration
 data "akamai_appsec_configuration" "my_appsec_configuration" {
   name = "HI_TerraformCohortAPSConfig"
@@ -17,10 +22,6 @@ data "akamai_property_hostnames" "my_property_hostnames" {
   version     = data.akamai_property.my_property.version
 }
 
-#Excecise
-locals {
-  app_hostnames = [for app in var.apps : "${app}.terraform.dnslab.webtechnologists.net"]
-}
 
 #data "akamai_contracts" "my_contracts" {
 #}

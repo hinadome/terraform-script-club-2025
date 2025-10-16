@@ -1,7 +1,3 @@
-locals {
-  rule_format = "v2018-09-12"
-}
-
 # get property_rules using akamai terraform
 # docker run --rm -it --name akamai -v $HOME/.edgerc:/root/.edgerc -v $HOME/code/docker_akamai_cli:/workdir akamai/shell
 # akamai --section terraformclub --accountkey 1-6JHGX:1-8BYUX terraform export-property export-property --version 1 "hi_terraform_cohort"
