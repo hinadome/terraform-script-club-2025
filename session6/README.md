@@ -34,7 +34,7 @@
   - terraform init -backend-config=backend -reconfigure 
 
 # GTM Import 
-- gtm
+- GTM Domain
   - import process
     ```
     terraform import akamai_gtm_domain.my_gtm_domain webtechnologists.net.akadns.net 
@@ -73,3 +73,36 @@
     Changes for domain webtechnologists.net.akadns.net:
     modificationComments changed to: "Managed by Terraform"
     ```
+- Datacenter
+  - Import Datacenter1
+    ```
+    terraform import akamai_gtm_datacenter.my_datecenter1 "webtechnologists.net.akadns.net:1"  
+
+    resource "akamai_gtm_datacenter" "my_datecenter1" {
+    # (resource arguments)
+    }
+    ```
+  - Modify resource
+    ```
+    resource "akamai_gtm_datacenter" "my_datecenter1" {
+      domain = data.akamai_gtm_domain.my_gtm_domain.name 
+      nickname = "Test_DC_of_webtechnologists.net"
+    }
+    ```
+  - terraform apply
+  - Import Datacenter2
+    ```
+    terraform import akamai_gtm_datacenter.my_datecenter2 "webtechnologists.net.akadns.net:5400"  
+
+    resource "akamai_gtm_datacenter" "my_datecenter2" {
+    # (resource arguments)
+    }
+    ```
+  - Modify resource
+    ```
+    resource "akamai_gtm_datacenter" "my_datecenter1" {
+      domain = data.akamai_gtm_domain.my_gtm_domain.name 
+      nickname = "Test_DC_of_webtechnologists.net"
+    }
+    ```
+  - terraform apply
